@@ -10,13 +10,13 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   title: string = 'Task Tracker';
-  showAddTask: boolean = false;
+  showAddQuiz: boolean = false;
   subscription: Subscription;
 
   constructor(private uiService: UiService, private router: Router) {
     this.subscription = this.uiService
       .onToggle()
-      .subscribe((value) => (this.showAddTask = value));
+      .subscribe((value) => (this.showAddQuiz = value));
   }
 
   ngOnInit(): void {}
@@ -26,8 +26,8 @@ export class HeaderComponent implements OnInit {
      this.subscription.unsubscribe();
    }
 
-  toggleAddTask() {
-    this.uiService.toggleAddTask();
+  toggleAddQuiz() {
+    this.uiService.toggleAddQuiz();
   }
 
   hasRoute(route: string) {

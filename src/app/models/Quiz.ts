@@ -1,12 +1,12 @@
 export interface Quiz {
-    id: number;
+    id?: number;
     title: string;
-    description: string;
+    description?: string;
     questions: QuizQuestion[];
 }
     
 export interface QuizQuestion {
-     id: number;
+     id?: number;
      text: string;
      type: QuizQuestionType;
      options?: string[]; // Only applicable for multiple choice questions

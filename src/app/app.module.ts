@@ -15,11 +15,12 @@ import { AboutComponent } from './pages/about/about.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 import { QuizListComponent } from './components/quiz-list/quiz-list.component';
-import { QuizItemComponent } from './components/quiz-item/quiz-item.component';
 import { QuizResultsComponent } from './components/quiz-results/quiz-results.component';
 import { AnswersComponent } from './components/answers/answers.component';
+import { QuizDetailComponent } from './components/quiz-detail/quiz-detail.component';
 
 import { appRoutes } from './app.routes';
+import { AddQuizComponent } from './components/add-quiz/add-quiz.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,11 @@ import { appRoutes } from './app.routes';
     AddTaskComponent,
     AboutComponent,
     FooterComponent,
+    AddQuizComponent,
+    QuizListComponent,
+    QuizResultsComponent,
+    AnswersComponent,
+    QuizDetailComponent,
   ],
   imports: [
     BrowserModule,
