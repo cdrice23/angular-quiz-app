@@ -18,6 +18,7 @@ import { QuizListComponent } from './components/quiz-list/quiz-list.component';
 import { QuizResultsComponent } from './components/quiz-results/quiz-results.component';
 import { AnswersComponent } from './components/answers/answers.component';
 import { QuizDetailComponent } from './components/quiz-detail/quiz-detail.component';
+import { QuizItemSummaryComponent } from './components/quiz-item-summary/quiz-item-summary.component';
 
 import { appRoutes } from './app.routes';
 import { AddQuizComponent } from './components/add-quiz/add-quiz.component';
@@ -37,6 +38,7 @@ import { AddQuizComponent } from './components/add-quiz/add-quiz.component';
     QuizResultsComponent,
     AnswersComponent,
     QuizDetailComponent,
+    QuizItemSummaryComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,9 @@
 <app-add-quiz (onAddQuiz)="addQuiz($event)"></app-add-quiz>
-<p>quiz-list works!</p>
+<app-quiz-item-summary
+    *ngFor="let quiz of quizList"
+    [quiz]="quiz"
+    [routerLink]="['/quiz', quiz.id]"
+    (onDeleteQuiz)="deleteQuiz(quiz)"
+></app-quiz-item-summary>
 
 

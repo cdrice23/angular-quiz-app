@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UiService } from '../../services/ui.service';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +12,8 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   title: string = 'Task Tracker';
   showAddQuiz: boolean = false;
+  isHome: boolean = false;
+  isQuiz: boolean = false;
   subscription: Subscription;
 
   constructor(private uiService: UiService, private router: Router) {
@@ -19,7 +22,17 @@ export class HeaderComponent implements OnInit {
       .subscribe((value) => (this.showAddQuiz = value));
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.checkIfHomeRoute();
+    this.checkIfQuizRoute();
+    
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.checkIfHomeRoute();
+      this.checkIfQuizRoute();
+    });
+ }
   
    ngOnDestroy() {
      // Unsubscribe to ensure no memory leaks
@@ -30,7 +43,15 @@ export class HeaderComponent implements OnInit {
     this.uiService.toggleAddQuiz();
   }
 
-  hasRoute(route: string) {
-    return this.router.url === route;
+  checkIfHomeRoute() {
+    this.isHome = this.router.url === '/';
   }
+
+  checkIfQuizRoute() {
+    this.isQuiz = this.router.url.includes('/quiz');
+ }
+
+  navigateToHome() {
+    this.router.navigate(['/']);
+ }
 }

@@ -1,1 +1,13 @@
-<p>quiz-item works!</p>
+<div
+  class="quiz"
+>
+  <h3>
+    {{ quiz.title }}
+    <fa-icon
+      (click)="onDelete(quiz)"
+      [ngStyle]="{ color: 'red' }"
+      [icon]="faTimes"
+    ></fa-icon>
+  </h3>
+  <p>{{ quiz.description }}</p>
+</div>

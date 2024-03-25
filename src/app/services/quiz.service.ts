@@ -21,6 +21,11 @@ export class QuizService {
     return this.http.get<Quiz[]>(this.apiUrl);
   }
 
+  getQuizById(id: string | null): Observable<Quiz> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<Quiz>(url);
+   }
+
   deleteQuiz(quiz: Quiz): Observable<Quiz> {
     const url = `${this.apiUrl}/${quiz.id}`;
     return this.http.delete<Quiz>(url);
