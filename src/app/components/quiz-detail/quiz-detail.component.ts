@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QuizService } from '../../services/quiz.service';
-import { Quiz } from '../../models/Quiz';
+import { Quiz, QuizQuestion, QuizQuestionType } from '../../models/Quiz';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-quiz-detail',
@@ -10,13 +11,34 @@ import { Quiz } from '../../models/Quiz';
 })
 export class QuizDetailComponent implements OnInit {
   quiz!: Quiz;
+  quizForm!: FormGroup;
+  QuizQuestionType = QuizQuestionType;
 
-  constructor(private route: ActivatedRoute, private quizService: QuizService) {}
+  constructor(private route: ActivatedRoute, private quizService: QuizService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = Number(this.route.snapshot.paramMap.get('id'));
     this.quizService.getQuizById(id).subscribe(quiz => {
       this.quiz = quiz;
+      this.createQuizForm();
+      console.log(this.quiz)
     });
- }
+
+  }
+  
+
+  createQuizForm(): void {
+    const formControls = this.quiz.questions.reduce<Record<string, FormControl>>((acc, question) => {
+       acc[question.id.toString()] = this.fb.control('');
+       return acc;
+    }, {});
+   
+    this.quizForm = this.fb.group(formControls);
+   }
+
+
+  onSubmit(): void {
+    // console.log(this.answers);
+    // Handle form submission logic here
+  }
 }

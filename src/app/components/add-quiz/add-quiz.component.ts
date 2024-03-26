@@ -10,6 +10,7 @@ import { Quiz, QuizQuestion } from '../../models/Quiz';
 })
 export class AddQuizComponent implements OnInit {
   @Output() onAddQuiz: EventEmitter<Quiz> = new EventEmitter();
+  id!: number;
   title!: string;
   description!: string;
   questions!: QuizQuestion[];
@@ -41,6 +42,7 @@ export class AddQuizComponent implements OnInit {
     }
 
     const newQuiz: Quiz = {
+      id: this.id,
       title: this.title,
       questions: this.questions,
       description: this.description,
@@ -48,6 +50,7 @@ export class AddQuizComponent implements OnInit {
 
     this.onAddQuiz.emit(newQuiz);
 
+    this.id = 0;
     this.title = '';
     this.questions = [];
     this.description = '';

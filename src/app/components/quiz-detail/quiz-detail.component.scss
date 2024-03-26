@@ -1,0 +1,41 @@
+.question-container {
+    margin-top: 20px;
+}
+
+.question {
+    border: 1px solid #ccc;
+    margin: 16px;
+    padding: 16px;
+}
+
+.options-multiple-choice > input[type="radio"] {
+    margin-right: 8px;
+}
+
+.text-input {
+    margin-top: 4px;
+}
+
+.text-input > input[type="text"] {
+    width: 80%;
+}
+
+.tf-group,
+.options-multiple-choice {
+    display: flex;
+    align-items: center;
+}
+
+.options-true-false {
+    display: flex;
+    flex-direction: column;
+}
+
+.tf-group > input[type="radio"] {
+    margin-right: 8px;
+}
+
+.submit-wrapper {
+    display: flex;
+    justify-content: center;
+}

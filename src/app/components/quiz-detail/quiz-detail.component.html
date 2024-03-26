@@ -1,4 +1,39 @@
-<div *ngIf="quiz">
+<form *ngIf="quiz" (ngSubmit)="onSubmit()" [formGroup]="quizForm">
+  <div class="quiz-header">
     <h1>{{ quiz.title }}</h1>
     <p>{{ quiz.description }}</p>
-</div>
+  </div>
+  <div class="question-container">
+    <div *ngFor="let question of quiz.questions">
+      <div *ngIf="question.type === QuizQuestionType.STRING" class="question">
+        <label>{{ question.text }}</label>
+        <div class="text-input">
+          <input type="text">
+        </div>
+      </div>
+      <div *ngIf="question.type === QuizQuestionType.MULTIPLE_CHOICE" class="question">
+        <p>{{ question.text }}</p>
+        <div *ngFor="let option of question.options; let i = index" class="options-multiple-choice">
+          <input type="radio" [value]="option" [formControlName]="question.id.toString()" id="{{'radio-' + question.id + '-' + i}}">
+          <label for="{{'radio-' + question.id + '-' + i}}">{{ option }}</label>
+       </div>
+      </div>
+      <div *ngIf="question.type === QuizQuestionType.TRUE_FALSE" class="question">
+        <label>{{ question.text }}</label>
+        <div class="options-true-false">
+          <div class="tf-group">
+            <input type="radio" [value]="true" [formControlName]="question.id.toString()" id="{{'true-' + question.id}}">
+            <label for="{{'true-' + question.id}}">True</label>
+          </div>
+          <div class="tf-group">
+            <input type="radio" [value]="false" [formControlName]="question.id.toString()" id="{{'false-' + question.id}}">
+            <label for="{{'false-' + question.id}}">False</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="submit-wrapper">
+    <button type="submit" class="btn">Submit & Check Answers</button>
+  </div>
+</form>

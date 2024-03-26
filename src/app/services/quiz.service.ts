@@ -21,7 +21,7 @@ export class QuizService {
     return this.http.get<Quiz[]>(this.apiUrl);
   }
 
-  getQuizById(id: string | null): Observable<Quiz> {
+  getQuizById(id: number): Observable<Quiz> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<Quiz>(url);
    }

@@ -1,12 +1,12 @@
 export interface Quiz {
-    id?: number;
+    id: number;
     title: string;
     description?: string;
     questions: QuizQuestion[];
 }
     
 export interface QuizQuestion {
-     id?: number;
+     id: number;
      text: string;
      type: QuizQuestionType;
      options?: string[]; // Only applicable for multiple choice questions
@@ -14,7 +14,7 @@ export interface QuizQuestion {
 }
     
 export enum QuizQuestionType {
-     STRING = 'string',
-     MULTIPLE_CHOICE = 'multiple_choice',
-     TRUE_FALSE = 'true_false'
+     STRING = 'STRING',
+     MULTIPLE_CHOICE = 'MULTIPLE_CHOICE',
+     TRUE_FALSE = 'TRUE_FALSE'
 }

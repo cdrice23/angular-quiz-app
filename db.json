@@ -1,7 +1,7 @@
 {
   "quizzes": [
     {
-      "id": "1",
+      "id": 1,
       "title": "U.S. Geography Quiz",
       "description": "Test your knowledge about the United States.",
       "questions": [
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "id": "2",
+      "id": 2,
       "title": "Angular Programming Quiz",
       "description": "Test your Angular knowledge.",
       "questions": [
