@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { QuizService } from '../../services/quiz.service';
 import { Quiz, QuizQuestion, QuizQuestionType } from '../../models/Quiz';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
@@ -14,7 +14,7 @@ export class QuizDetailComponent implements OnInit {
   quizForm!: FormGroup;
   QuizQuestionType = QuizQuestionType;
 
-  constructor(private route: ActivatedRoute, private quizService: QuizService, private fb: FormBuilder) {}
+  constructor(private route: ActivatedRoute, private quizService: QuizService, private fb: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -38,7 +38,20 @@ export class QuizDetailComponent implements OnInit {
 
 
   onSubmit(): void {
-    // console.log(this.answers);
-    // Handle form submission logic here
+    const userAnswers = this.quizForm.value;
+    let score = 0;
+    const results = this.quiz.questions.map(question => {
+        const userAnswer = userAnswers[question.id.toString()];
+        const isCorrect = typeof question.correctAnswer === "boolean" ? question.correctAnswer === userAnswer : question.correctAnswer?.toLowerCase() === userAnswer.toLowerCase();
+        if (isCorrect) score++;
+        return {
+          question: question.text,
+          userAnswer,
+          correctAnswer: question.correctAnswer,
+          isCorrect
+        };
+    });
+
+    this.router.navigate(['/quiz', this.quiz.id, 'results'], { state: { quiz: this.quiz, results, score } });
   }
 }

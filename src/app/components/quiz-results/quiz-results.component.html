@@ -1,1 +1,25 @@
-<p>quiz-results works!</p>
+<div class="quiz-header">
+    <h1>{{ quiz.title }}</h1>
+    <p>Your score: {{ score }} out of {{ quiz.questions.length }}</p>
+   </div>
+   <div class="question-container">
+    <div *ngFor="let result of results">
+        <div class="question" [ngClass]="{'correct-q': result.isCorrect, 'incorrect-q': !result.isCorrect}">
+            <p *ngIf="result.isCorrect" class="correct">
+            <fa-icon
+            [ngStyle]="{ color: 'green' }"
+            [icon]="faCheck"
+            ></fa-icon>
+            </p>
+            <p *ngIf="!result.isCorrect" class="incorrect">
+            <fa-icon
+            [ngStyle]="{ color: 'red' }"
+            [icon]="faTimes"
+            ></fa-icon>
+            </p>
+            <p><b>{{ result.question }}</b></p>
+            <p>Your answer: <span [ngClass]="{'green-text': result.isCorrect, 'red-text': !result.isCorrect}">{{ result.userAnswer }}</span></p>
+            <p>Correct answer: <span class="green-text">{{ result.correctAnswer }}</span></p>
+        </div>
+    </div>
+</div>

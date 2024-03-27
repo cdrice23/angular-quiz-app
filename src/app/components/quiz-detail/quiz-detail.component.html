@@ -6,9 +6,9 @@
   <div class="question-container">
     <div *ngFor="let question of quiz.questions">
       <div *ngIf="question.type === QuizQuestionType.STRING" class="question">
-        <label>{{ question.text }}</label>
+        <label><b>{{ question.text }}</b></label>
         <div class="text-input">
-          <input type="text">
+          <input type="text" [formControlName]="question.id.toString()">
         </div>
       </div>
       <div *ngIf="question.type === QuizQuestionType.MULTIPLE_CHOICE" class="question">
@@ -19,7 +19,7 @@
        </div>
       </div>
       <div *ngIf="question.type === QuizQuestionType.TRUE_FALSE" class="question">
-        <label>{{ question.text }}</label>
+        <label><b>{{ question.text }}</b></label>
         <div class="options-true-false">
           <div class="tf-group">
             <input type="radio" [value]="true" [formControlName]="question.id.toString()" id="{{'true-' + question.id}}">

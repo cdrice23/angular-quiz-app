@@ -1,0 +1,26 @@
+.question-container {
+    margin-top: 20px;
+}
+
+.question {
+    border: 1px solid #ccc;
+    margin: 16px;
+    padding: 16px;
+    border-radius: 5px;
+}
+
+.green-text {
+    color: green
+}
+
+.red-text {
+    color: red
+}
+
+.correct-q {
+    background: linear-gradient(180deg, #aaf0e9 10%, #FFFFFF 10%);
+}
+
+.incorrect-q {
+    background: linear-gradient(180deg, #FF7F7F 10%, #FFFFFF 10%);
+}
